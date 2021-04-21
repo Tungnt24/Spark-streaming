@@ -4,6 +4,8 @@ import sys
 from pyspark import SparkContext
 from pyspark.streaming import StreamingContext
 from pyspark.streaming.kafka import KafkaUtils
+from src.configuration.spark_window_config import WindowConfig
+from src.configuration.kafka_config import KafkaConfig
 
 
 def echo(time, rdd):
@@ -32,20 +34,20 @@ def create_context(broker, topic):
         ssc, [topic], {"metadata.broker.list": broker}
     )
     lines = kvs.map(lambda event: event[1])
-    words = (
-        lines.window(windowDuration=10, slideDuration=10)
-        .map(set_event)
-        .reduceByKey(aggregate_by_key)
-    )
+    words = lines.window(
+        windowDuration=WindowConfig.WINDOW_DURATION,
+        slideDuration=WindowConfig.SLIDE_DURATION).map(set_event).reduceByKey(aggregate_by_key)
     words.foreachRDD(echo)
     return ssc
 
 
 if __name__ == "__main__":
     broker, topic = sys.argv[1:]
-    
     ssc = StreamingContext.getOrCreate(
-        "checkpoint", lambda: create_context(broker, topic)
+        "checkpoint",
+        lambda: create_context(
+            KafkaConfig.KAFKA_BROKER, KafkaConfig.KAFKA_TOPIC
+        ),
     )
     ssc.start()
     ssc.awaitTermination()

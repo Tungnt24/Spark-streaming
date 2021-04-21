@@ -2,4 +2,4 @@
 venv
 checkpoint
 events_log.txt
-reprocess_events.txt
+.env
