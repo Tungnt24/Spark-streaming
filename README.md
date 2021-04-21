@@ -1,15 +1,20 @@
 # Spark-streaming
 Spark streaming with kafka 
 
+# Usage
+create file ```.env```  
+and add your config 
+
+detail in ```.env.example```
 
 # Run
 
-```python3 src/app.py <kafka_bootstrap_server> <kafka_topic>```
+```python3 src/app.py```
 
 # Re-process
 
-- add event to ```reprocess_event.txt```
-- run ```python3 src/kafka_producer.py <kafka_bootstrap_server> <kafka_topic>```
+- copy events from ```events_log.txt``` to ```reprocess_event.txt```
+- run ```python3 src/kafka_producer.py```
 
 
 ## Send event with kafka-python
