@@ -42,7 +42,6 @@ def create_context(broker, topic):
 
 
 if __name__ == "__main__":
-    broker, topic = sys.argv[1:]
     ssc = StreamingContext.getOrCreate(
         "checkpoint",
         lambda: create_context(

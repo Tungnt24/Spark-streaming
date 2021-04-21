@@ -12,14 +12,11 @@ def send_events(producer, topic):
             for key, value in data.items():
                 for event in list(value.values())[0]:
                     producer.send(
-                        KafkaConfig.KAFKA_TOPIC, bytes(event, "utf-8")
+                        topic, bytes(event, "utf-8")
                     )
                     producer.flush()
 
 
 if __name__ == "__main__":
-    import sys
-
-    broker, topic = sys.argv[1:]
     producer = KafkaProducer(bootstrap_servers=KafkaConfig.KAFKA_BROKER)
-    send_events(producer, topic)
+    send_events(producer, KafkaConfig.KAFKA_TOPIC)
