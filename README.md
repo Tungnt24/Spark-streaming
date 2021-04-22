@@ -2,6 +2,11 @@
 Spark streaming with kafka 
 
 # Usage
+
+create virtualenv: ```virtualenv venv --python=python3.7```
+
+```pip install -r requirements.txt```
+
 create file ```.env```  
 and add your config 
 
