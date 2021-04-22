@@ -3,3 +3,4 @@ venv
 checkpoint
 events_log.txt
 .env
+__pycache__
