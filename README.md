@@ -7,6 +7,10 @@ create virtualenv: ```virtualenv venv --python=python3.7```
 
 ```pip install -r requirements.txt```
 
+install file jar from https://search.maven.org/artifact/org.apache.spark/spark-streaming-kafka-assembly_2.11/1.6.3/jar
+
+copy file to ```<path_to_pyspark>pyspark/jars```
+
 create file ```.env```  
 and add your config 
 
