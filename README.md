@@ -17,6 +17,9 @@ and add your config
 detail in ```.env.example```
 
 # Run
+```export JAVA_HOME="<java_home_path>"```
+
+```export export PYTHONPATH=$PYTHONPATH:<python_path>```
 
 ```python3 src/app.py```
 
